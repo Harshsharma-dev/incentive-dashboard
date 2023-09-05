@@ -1,33 +1,103 @@
 <script>
-	import cardImg from '$lib/assets/cardImg.jpeg';
 	import bmw from '$lib/assets/bmw.png';
 	import { goto } from '$app/navigation';
-	import { IncentiveDetails } from '../Store.js';
+	import { IncentiveData, IncentiveDetails, IncentiveFormData } from '../Store.js';
+	import { page } from '$app/stores';
+
+	let mapPath = $page.url.pathname;
+	console.log(mapPath + ' path');
 
 	export let incentiveImg;
 	export let incentiveName;
 	export let incentiveInfo;
 	export let incentiveId;
+	export let incentiveDesc;
+	export let discountPrice;
 	let contentToggle = false;
-	console.log(contentToggle);
 
-	
-	function mapincentive(){
-		goto('mapincentive/' + incentiveId)
+	// set button route
+	function mapIncentiveRoute() {
+		goto('mapincentive/' + incentiveId);
 	}
-	// let incentiveInfo =[];
-	// console.log('test');
+
+	// store variables ===============================================
+	let unmappedLength;
+	let isMapped;
+	let incentiveCountData;
+	let incentiveMap;
+	let subscribeForm;
+	let formData;
+
+	//subscribe form Data from store
+	$: subscribeForm = $IncentiveFormData;
+
+	//update formData
+	function editIncentive() {
+		IncentiveFormData.update((data) => {
+			formData = data;
+			console.log(formData[0].incentiveTitle + '  from funcio');
+			formData[0].incentiveTitle = incentiveInfo;
+			formData[0].discription = incentiveDesc;
+			formData[0].discountPrice = discountPrice;
+
+			return [...formData];
+		});
+		console.log(formData[0].incentiveTitle + '  from funcio');
+		mapIncentive();
+	}
+
+	// unmappedLength.set((unmappedLength[0].unmapped = unmappedLength.length));
+
+	// subscribe data==========================================================
+	isMapped = $IncentiveDetails;
 	// IncentiveDetails.subscribe((data) => {
-		// 	incentiveInfo = data;
-		// 	console.log(data);
+	// 	isMapped = data;
 	// });
 
-	
-	console.log(incentiveId)
+	// update initial value of unmapped ==============================================
+	unmappedLength = isMapped.length;
+	console.log(unmappedLength + ' len');
+
+	// map Incentive function=================================================
+	function mapIncentive() {
+		IncentiveDetails.update((data) => {
+			incentiveMap = data;
+			console.log(incentiveMap[incentiveId].isMapped + 'value');
+			// return console.log(incentiveId);
+			incentiveMap[incentiveId].isMapped = true;
+			return [...incentiveMap];
+		});
+
+		console.log(isMapped[incentiveId].isMapped + ' ' + 'is map');
+
+		IncentiveData.update((data) => {
+			incentiveCountData = data;
+			incentiveCountData[0].mapped += 1;
+			incentiveCountData[0].unmapped -= 1;
+
+			return [...incentiveCountData];
+		});
+	}
+
+	// reject Incentive function=================================================
+	function rejectIncentive() {
+		IncentiveDetails.update((data) => {
+			incentiveMap = data;
+			incentiveMap[incentiveId].isMapped = false;
+			return [...incentiveMap];
+		});
+
+		IncentiveData.update((data) => {
+			incentiveCountData = data;
+			incentiveCountData[0].mapped -= 1;
+			incentiveCountData[0].rejected += 1;
+			return [...incentiveCountData];
+		});
+	}
 </script>
 
-<div class="container p-3">
-	<div class="card card-container p-4">
+<div class="container p-2 card-container1">
+	<div class="card card-container">
 		<div class="container row no-gutters pt-4 px-4">
 			<div class="border p-0 d-flex">
 				<div class="col-md-8">
@@ -37,7 +107,7 @@
 					<div class="card-title-right px-3">
 						<div class="d-flex title-top align-items-center">
 							<img src={bmw} alt="" class="logo-img" />
-							<h5 class="card-title text-wrap">{incentiveName}</h5>
+							<p class="card-title text-wrap fw-bold">{incentiveName}</p>
 						</div>
 						<p class="card-text text-wrap fw-bold px-3">{incentiveInfo}</p>
 					</div>
@@ -47,13 +117,12 @@
 		<div class="container content-description mt-4 px-4">
 			<h5 class="text-truncate">{incentiveInfo}</h5>
 			<p>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, necessitatibus nisi. Enim
-				ipsum accusantium molestias nulla fugiat, porro in nemo voluptas quibusdam, dicta sunt
-				voluptatum tempora veritatis quasi facere vitae suscipit accusamus praesentium
+				$ {discountPrice}
+				{incentiveDesc}
 			</p>
 			<hr />
 		</div>
-		<div class="container mt-3 px-4">
+		<div class="container my-3 px-4">
 			<button
 				on:click={() => (contentToggle = !contentToggle)}
 				class="dropdown-toggle content-btn fw-bold"
@@ -97,7 +166,23 @@
 			<hr />
 			<div class="mt-3">
 				<p>Expires: 2023-10-01T05:59:00Z</p>
-				<button id={incentiveId} on:click={mapincentive} class="btn map-incentive-btn p-2">Map This Incentive</button>
+				{#if mapPath === '/'}
+					<button id={incentiveId} on:click={mapIncentiveRoute} class="btn map-incentive-btn p-2"
+						>Map This Incentive</button
+					>
+				{:else}
+					<button
+						id={incentiveId}
+						on:click|preventDefault={editIncentive}
+						class="btn map-incentive-btn p-2">Edit This Incentive</button
+					>
+					<button
+						id={incentiveId}
+						on:click={rejectIncentive}
+						class="btn map-incentive-btn p-2 border-danger text-danger"
+						>Reject this Incentive</button
+					>
+				{/if}
 			</div>
 		</div>
 	</div>
@@ -142,5 +227,9 @@
 
 	.logo-img {
 		margin-right: 0.5rem;
+	}
+
+	.card-container1 {
+		width: 150%;
 	}
 </style>

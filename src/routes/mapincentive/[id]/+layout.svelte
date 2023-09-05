@@ -1,0 +1,2 @@
+<p>layout</p>
+<slot />

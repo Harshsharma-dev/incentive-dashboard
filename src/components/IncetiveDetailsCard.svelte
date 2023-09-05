@@ -1,10 +1,22 @@
 <script>
 	// import Icon from '@iconify/svelte';
 	// import { RiSystemAlertLine } from 'solid-icons/ri'
-	let unmappedCount = 60;
-	let mappedCount = 59;
-	let rejectedCount = 30;
-	let newCount = 59;
+	import { IncentiveData, IncentiveDetails } from '../Store.js';
+
+	let incentiveDetails;
+	$: incentiveDetails = $IncentiveData;
+	console.log('test');
+	// IncentiveData.subscribe((data) => {
+	// 	incentiveDetails = data;
+	// 	console.log(incentiveDetails[0].mapped);
+	// });
+
+	// IncentiveData.update();
+
+	// let unmappedCount = 60;
+	// let mappedCount = 59;
+	// let rejectedCount = 30;
+	// let newCount = 59;
 	function dateBuilder() {
 		let d = new Date();
 		let months = [
@@ -21,19 +33,18 @@
 			'November',
 			'December'
 		];
-		let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-		let day = days[d.getDay()];
+		// let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+		// let day = days[d.getDay()];
 		let date = d.getDate();
 		let month = months[d.getMonth()];
 		let year = d.getFullYear();
 
 		return `${month} ${date},  ${year}`;
 	}
-	
 </script>
 
 <div class="container-fluid mt-3">
-	<div class="row top-row-card-container">
+	<div class="row top-row-card-container justify-content-between">
 		<div class="col-sm-3">
 			<div class="card shadow bg-white rounded">
 				<div class="card-body">
@@ -46,7 +57,7 @@
 						<span class="icon"> icon </span>
 					</div>
 					<div class="row">
-						<h3 class="fw-bold">{unmappedCount}</h3>
+						<h3 class="fw-bold">{$IncentiveDetails.length}</h3>
 					</div>
 					<div class="row">
 						<p class="fw-bold">UNMAPPED INCENTIVES</p>
@@ -66,7 +77,7 @@
 						<span class="icon"> icon </span>
 					</div>
 					<div class="row">
-						<h3 class="fw-bold">{mappedCount}</h3>
+						<h3 class="fw-bold">{incentiveDetails[0].mapped}</h3>
 					</div>
 					<div class="row">
 						<p class="fw-bold">MAPPED INCENTIVES</p>
@@ -86,10 +97,10 @@
 						<span class="icon"> icon </span>
 					</div>
 					<div class="row">
-						<h3 class="fw-bold">{rejectedCount}</h3>
+						<h3 class="fw-bold">{incentiveDetails[0].rejected}</h3>
 					</div>
 					<div class="row">
-						<p class="fw-bold">Rejected INCENTIVES</p>
+						<p class="fw-bold">REJECTED INCENTIVES</p>
 					</div>
 				</div>
 			</div>
@@ -106,7 +117,7 @@
 						<span class="icon"> icon </span>
 					</div>
 					<div class="row">
-						<h3 class="fw-bold">{newCount}</h3>
+						<h3 class="fw-bold">{incentiveDetails[0].new}</h3>
 					</div>
 					<div class="row">
 						<p class="fw-bold">NEW INCENTIVES</p>
