@@ -7,7 +7,7 @@
 </script>
 
 <Navbar />
-<IncentiveCount />
-<IncetiveDetailsCard />
+<!-- <IncentiveCount /> -->
+<!-- <IncetiveDetailsCard /> -->
 
 <slot />

@@ -4,13 +4,24 @@
 	import { IncentiveData, IncentiveDetails } from '../Store.js';
 
 	let incentiveDetails;
-	$: incentiveDetails = $IncentiveData;
+	let updateUnmapped;
+	let subIncentiveDetails;
+	// $: incentiveDetails = $IncentiveData;
 	console.log('test');
-	// IncentiveData.subscribe((data) => {
-	// 	incentiveDetails = data;
-	// 	console.log(incentiveDetails[0].mapped);
+	IncentiveData.subscribe((data) => {
+		incentiveDetails = data;
+		console.log(incentiveDetails[0].mapped);
+	});
+
+	// IncentiveDetails.subscribe((data) => {
+	// 	subIncentiveDetails = data;
 	// });
 
+	// IncentiveData.update((data) => {
+	// 	updateUnmapped = data;
+	// 	console.log(...subIncentiveDetails, ...updateUnmapped);
+	// 	return [updateUnmapped];
+	// });
 	// IncentiveData.update();
 
 	// let unmappedCount = 60;
@@ -43,9 +54,9 @@
 	}
 </script>
 
-<div class="container-fluid mt-3">
-	<div class="row top-row-card-container justify-content-between">
-		<div class="col-sm-3">
+<div class="container-fluid incentive-details-cardA-container">
+	<div class="row top-row-card-container justify-content-center mx-4 my-4 mt-3">
+		<!-- <div class="col-sm-3 card-container-style">
 			<div class="card shadow bg-white rounded">
 				<div class="card-body">
 					<div class="d-flex justify-content-between">
@@ -57,15 +68,15 @@
 						<span class="icon"> icon </span>
 					</div>
 					<div class="row">
-						<h3 class="fw-bold">{$IncentiveDetails.length}</h3>
+						<h3 class="fw-bold">{incentiveDetails[0].unmapped.length}</h3>
 					</div>
 					<div class="row">
 						<p class="fw-bold">UNMAPPED INCENTIVES</p>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="col-sm-3">
+		</div> -->
+		<div class="col-sm-3 card-container-style">
 			<div class="card shadow bg-white rounded">
 				<div class="card-body">
 					<div class="d-flex justify-content-between">
@@ -77,7 +88,7 @@
 						<span class="icon"> icon </span>
 					</div>
 					<div class="row">
-						<h3 class="fw-bold">{incentiveDetails[0].mapped}</h3>
+						<h3 class="fw-bold">{incentiveDetails[0].mapped.length}</h3>
 					</div>
 					<div class="row">
 						<p class="fw-bold">MAPPED INCENTIVES</p>
@@ -85,7 +96,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-3 card-container-style">
 			<div class="card shadow bg-white rounded">
 				<div class="card-body">
 					<div class="d-flex justify-content-between">
@@ -97,7 +108,7 @@
 						<span class="icon"> icon </span>
 					</div>
 					<div class="row">
-						<h3 class="fw-bold">{incentiveDetails[0].rejected}</h3>
+						<h3 class="fw-bold">{incentiveDetails[0].rejected.length}</h3>
 					</div>
 					<div class="row">
 						<p class="fw-bold">REJECTED INCENTIVES</p>
@@ -105,7 +116,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-3 card-container-style">
 			<div class="card shadow bg-white rounded">
 				<div class="card-body">
 					<div class="d-flex justify-content-between">
@@ -127,7 +138,6 @@
 		</div>
 	</div>
 </div>
-<hr />
 
 <style>
 	.top-row-card-container {
@@ -148,4 +158,8 @@
 	.date-span {
 		font-size: 0.9rem;
 	}
+
+	/* .card-container-style {
+		width: 19.844rem;
+	} */
 </style>

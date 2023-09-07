@@ -11,7 +11,7 @@
 </script>
 
 <div class="container-fluid mt-3">
-	<div class="d-flex justify-content-between">
+	<div class="d-flex justify-content-between mx-5">
 		<div class="incentive-count">
 			<span class="font-weight-bold"
 				>TOTAL INCENTIVES <strong class=" ">{$IncentiveDetails.length}</strong></span
@@ -44,11 +44,12 @@
 
 	.dropdown > button {
 		width: 22rem;
-		border: 1px solid rgb(165, 165, 165);
+		border: 1px solid #f5f5f5;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		background: rgb(172 172 172 / 15%);
-		border-radius: 5px;
+		background: #f5f5f5;
+		border-radius: 2px;
+		border: 1px solid #b2b2b2;
 	}
 </style>

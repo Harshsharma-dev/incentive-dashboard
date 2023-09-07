@@ -20,14 +20,18 @@
 	console.log(incentiveInfo[incentiveId].src);
 </script>
 
-<div class="container">
-	<div class="container">
-		<div class="d-flex justify-content-between">
-			<button on:click={backToHome} class="btn"> ← Back To Incentives List</button>
-			<h2 class="mr-7">Map Incentives</h2>
+<div class="">
+	<div class="mx-4">
+		<div class="d-flex justify-content-between my-4">
+			<div>
+				<button on:click={backToHome} class="btn fw-bold"> ← Back To Incentives List</button>
+			</div>
+			<div>
+				<h2 class="mr-7">Map Incentives</h2>
+			</div>
 		</div>
 	</div>
-	<div class="container">
+	<div class="mx-5">
 		<div class="d-flex">
 			<IncentiveCard
 				incentiveImg={incentiveInfo[incentiveId].src}
@@ -47,3 +51,11 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	@media (max-width: 1198px) {
+		.d-flex {
+			flex-wrap: wrap;
+		}
+	}
+</style>

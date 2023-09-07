@@ -3,7 +3,7 @@
 	import { goto } from '$app/navigation';
 	import { IncentiveData, IncentiveDetails, IncentiveFormData } from '../Store.js';
 	import { page } from '$app/stores';
-
+	import RejectModal from './RejectModal.svelte';
 	let mapPath = $page.url.pathname;
 	console.log(mapPath + ' path');
 
@@ -13,6 +13,8 @@
 	export let incentiveId;
 	export let incentiveDesc;
 	export let discountPrice;
+	export let mapOrNot;
+	export let rejectedOrNot;
 	let contentToggle = false;
 
 	// set button route
@@ -32,19 +34,19 @@
 	$: subscribeForm = $IncentiveFormData;
 
 	//update formData
-	function editIncentive() {
-		IncentiveFormData.update((data) => {
-			formData = data;
-			console.log(formData[0].incentiveTitle + '  from funcio');
-			formData[0].incentiveTitle = incentiveInfo;
-			formData[0].discription = incentiveDesc;
-			formData[0].discountPrice = discountPrice;
-
-			return [...formData];
-		});
+	// function editIncentive() {
+	IncentiveFormData.update((data) => {
+		formData = data;
 		console.log(formData[0].incentiveTitle + '  from funcio');
-		mapIncentive();
-	}
+		formData[0].incentiveTitle = incentiveInfo;
+		formData[0].discription = incentiveDesc;
+		formData[0].discountPrice = discountPrice;
+
+		return [...formData];
+	});
+	console.log(formData[0].incentiveTitle + '  from funcio');
+	// mapIncentive();
+	// }
 
 	// unmappedLength.set((unmappedLength[0].unmapped = unmappedLength.length));
 
@@ -72,14 +74,20 @@
 
 		IncentiveData.update((data) => {
 			incentiveCountData = data;
-			incentiveCountData[0].mapped += 1;
-			incentiveCountData[0].unmapped -= 1;
-
+			if (incentiveCountData[0].mapped.includes(isMapped[incentiveId])) {
+				alert('Already Mapped');
+			} else {
+				incentiveCountData[0].mapped.push(isMapped[incentiveId]);
+				incentiveCountData[0].unmapped -= 1;
+			}
 			return [...incentiveCountData];
 		});
+		console.log(incentiveCountData[0].mapped + 'mapped');
+		console.log(isMapped[incentiveId]);
 	}
 
 	// reject Incentive function=================================================
+
 	function rejectIncentive() {
 		IncentiveDetails.update((data) => {
 			incentiveMap = data;
@@ -89,15 +97,24 @@
 
 		IncentiveData.update((data) => {
 			incentiveCountData = data;
-			incentiveCountData[0].mapped -= 1;
-			incentiveCountData[0].rejected += 1;
+
+			if (
+				incentiveCountData[0].mapped.includes(isMapped[incentiveId]) &&
+				!incentiveCountData[0].rejected.includes(isMapped[incentiveId])
+			) {
+				incentiveCountData[0].mapped.splice(isMapped[incentiveId], 1);
+				incentiveCountData[0].rejected.push(isMapped[incentiveId]);
+			} else {
+				alert('not mapped');
+			}
+
 			return [...incentiveCountData];
 		});
 	}
 </script>
 
-<div class="container p-2 card-container1">
-	<div class="card card-container">
+<div class="container py-3 card-container1">
+	<div class="card container card-style">
 		<div class="container row no-gutters pt-4 px-4">
 			<div class="border p-0 d-flex">
 				<div class="col-md-8">
@@ -117,7 +134,7 @@
 		<div class="container content-description mt-4 px-4">
 			<h5 class="text-truncate">{incentiveInfo}</h5>
 			<p>
-				$ {discountPrice}
+				{discountPrice}
 				{incentiveDesc}
 			</p>
 			<hr />
@@ -166,15 +183,25 @@
 			<hr />
 			<div class="mt-3">
 				<p>Expires: 2023-10-01T05:59:00Z</p>
-				{#if mapPath === '/'}
+				{#if mapOrNot}
+					<button
+						id={incentiveId}
+						on:click|preventDefault={mapIncentiveRoute}
+						class="btn map-incentive-btn p-2">Edit Mapping</button
+					>
+					<button
+						id={incentiveId}
+						on:click={rejectIncentive}
+						class="btn map-incentive-btn p-2 border-danger text-danger"
+						>Reject this Incentive</button
+					>
+				{:else if rejectedOrNot}
 					<button id={incentiveId} on:click={mapIncentiveRoute} class="btn map-incentive-btn p-2"
 						>Map This Incentive</button
 					>
 				{:else}
-					<button
-						id={incentiveId}
-						on:click|preventDefault={editIncentive}
-						class="btn map-incentive-btn p-2">Edit This Incentive</button
+					<button id={incentiveId} on:click={mapIncentiveRoute} class="btn map-incentive-btn p-2"
+						>Map This Incentive</button
 					>
 					<button
 						id={incentiveId}
@@ -189,6 +216,9 @@
 </div>
 
 <style>
+	.card-style {
+		width: 60rem;
+	}
 	.content-btn {
 		border: none;
 		outline: none;
@@ -230,6 +260,6 @@
 	}
 
 	.card-container1 {
-		width: 150%;
+		/* width: 150%; */
 	}
 </style>

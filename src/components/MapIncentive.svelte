@@ -68,7 +68,7 @@
 </script>
 
 <!-- <h2>Map Incentives</h2> -->
-<div class="container p-2">
+<div class="container p-3">
 	<div class="card card-container p-4">
 		<!-- <div class=""> -->
 		<form>

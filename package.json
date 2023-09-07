@@ -16,7 +16,7 @@
 		"@sveltejs/kit": "^1.20.4",
 		"autoprefixer": "^10.4.14",
 		"bootstrap": "^5.3.1",
-		"flowbite-svelte": "^0.44.4",
+		"flowbite-svelte": "^0.44.12",
 		"postcss": "^8.4.24",
 		"postcss-load-config": "^4.0.1",
 		"prettier": "^2.8.0",
