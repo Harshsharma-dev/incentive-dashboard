@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 
 export let IncentiveDetails = writable([
     {
-        id: 1,
+        id: 0,
         name: 'BMW MOTORRAD',
         src: 'https://cdn1.cycletrader.com/v1/media/648b2b50f2c57229217ccb3b.jpg?width=1024&height=768&quality=70&bestfit=true&upsize=true&blurBackground=true&blurValue=100&upsize=true',
         title: 'U.S. Emergency Services Workers',
@@ -12,7 +12,7 @@ export let IncentiveDetails = writable([
         isMapped: false
     },
     {
-        id: 2,
+        id: 1,
 
         name: 'R1250GS ADVENTURE',
         src: 'https://cdn1.cycletrader.com/v1/media/64ec381158de526a5e4453e6.jpg?width=1024&height=768&quality=70&bestfit=true&upsize=true&blurBackground=true&blurValue=100&upsize=true',
@@ -24,7 +24,7 @@ export let IncentiveDetails = writable([
         isMapped: true
     },
     {
-        id: 3,
+        id: 2,
 
         name: 'RS 660 EXTREMA',
         src: 'https://cdn1.cycletrader.com/v1/media/64e642cb8509a874e964fb37.jpg?width=1024&height=768&quality=70&bestfit=true&upsize=true&blurBackground=true&blurValue=100&upsize=true',
@@ -36,7 +36,7 @@ export let IncentiveDetails = writable([
         isMapped: true
     },
     {
-        id: 4,
+        id: 3,
 
         name: 'FXFBS - Fat Bob® 114',
         src: 'https://cdn1.cycletrader.com/v1/media/64dc4cf16946c033f85d6506.jpg?width=1024&height=768&quality=70&bestfit=true&upsize=true&blurBackground=true&blurValue=100&upsize=true',
@@ -48,7 +48,7 @@ export let IncentiveDetails = writable([
         isMapped: false
     },
     {
-        id: 5,
+        id: 4,
 
         name: 'R 18 Roctane',
         src: 'https://cdn1.cycletrader.com/v1/media/64d6b902648dc01b5a236257.jpg?width=1024&height=768&quality=70&bestfit=true&upsize=true&blurBackground=true&blurValue=100&upsize=true',
@@ -72,7 +72,7 @@ export let IncentiveData = writable([
 
 export let unMappedIncentives = writable([
     {
-        id: 1,
+        id: 0,
         name: 'BMW MOTORRAD',
         src: 'https://cdn1.cycletrader.com/v1/media/648b2b50f2c57229217ccb3b.jpg?width=1024&height=768&quality=70&bestfit=true&upsize=true&blurBackground=true&blurValue=100&upsize=true',
         title: 'U.S. Emergency Services Workers',
@@ -84,7 +84,7 @@ export let unMappedIncentives = writable([
 
     },
     {
-        id: 2,
+        id: 1,
 
         name: 'R1250GS ADVENTURE',
         src: 'https://cdn1.cycletrader.com/v1/media/64ec381158de526a5e4453e6.jpg?width=1024&height=768&quality=70&bestfit=true&upsize=true&blurBackground=true&blurValue=100&upsize=true',
@@ -100,7 +100,7 @@ export let unMappedIncentives = writable([
 
 export let mappedIncentives = writable([
     {
-        id: 3,
+        id: 2,
 
         name: 'RS 660 EXTREMA',
         src: 'https://cdn1.cycletrader.com/v1/media/64e642cb8509a874e964fb37.jpg?width=1024&height=768&quality=70&bestfit=true&upsize=true&blurBackground=true&blurValue=100&upsize=true',
@@ -113,7 +113,7 @@ export let mappedIncentives = writable([
         isRejected: false
     },
     {
-        id: 4,
+        id: 3,
 
         name: 'FXFBS - Fat Bob® 114',
         src: 'https://cdn1.cycletrader.com/v1/media/64dc4cf16946c033f85d6506.jpg?width=1024&height=768&quality=70&bestfit=true&upsize=true&blurBackground=true&blurValue=100&upsize=true',
@@ -130,7 +130,7 @@ export let mappedIncentives = writable([
 
 export let rejectedIncentives = writable([
     {
-        id: 5,
+        id: 4,
 
         name: 'R 18 Roctane',
         src: 'https://cdn1.cycletrader.com/v1/media/64d6b902648dc01b5a236257.jpg?width=1024&height=768&quality=70&bestfit=true&upsize=true&blurBackground=true&blurValue=100&upsize=true',

@@ -1,6 +1,5 @@
 <script>
 	import IncentiveCard from '../components/IncentiveCard.svelte';
-	// import IncetiveDetailsCard from '../components/IncetiveDetailsCard.svelte';
 	import IncentiveCount from '../components/IncentiveCount.svelte';
 	import { unMappedIncentives, mappedIncentives, rejectedIncentives } from '../Store.js';
 	import MappedCard from '../components/MappedCard.svelte';
@@ -8,12 +7,6 @@
 	import RejectedIncentive from '../components/RejectedIncentive.svelte';
 	import NewIncentives from '../components/NewIncentives.svelte';
 	import RejectModal from '../components/RejectModal.svelte';
-	// let incentiveInfo = [];
-	// console.log('test');
-	// IncentiveDetails.subscribe((data) => {
-	// 	incentiveInfo = data;
-	// 	console.log(data);
-	// });
 
 	let unMappedData;
 	unMappedIncentives.subscribe((data) => {
@@ -72,6 +65,7 @@
 			<NewIncentives />
 		</div>
 	</div>
+
 	<!-- <div class="card" on:click={() => toggleIncentives('unMapped')}>
 		<h2>Mapped</h2>
 	</div> -->
@@ -98,7 +92,7 @@
 				incentiveImg={incentive.src}
 				incentiveName={incentive.name}
 				incentiveInfo={incentive.title}
-				incentiveId={index}
+				incentiveId={incentive.id}
 				incentiveDesc={incentive.discription}
 				discountPrice={incentive.discountPrice}
 			/>
@@ -109,7 +103,7 @@
 				incentiveImg={incentive.src}
 				incentiveName={incentive.name}
 				incentiveInfo={incentive.title}
-				incentiveId={index}
+				incentiveId={incentive.id}
 				incentiveDesc={incentive.discription}
 				discountPrice={incentive.discountPrice}
 				mapOrNot={incentive.isMapped}
@@ -121,7 +115,7 @@
 				incentiveImg={incentive.src}
 				incentiveName={incentive.name}
 				incentiveInfo={incentive.title}
-				incentiveId={index}
+				incentiveId={incentive.id}
 				incentiveDesc={incentive.discription}
 				discountPrice={incentive.discountPrice}
 				rejectedOrNot={incentive.isRejected}

@@ -1,7 +1,12 @@
 <script>
 	import bmw from '$lib/assets/bmw.png';
 	import { goto } from '$app/navigation';
-	import { IncentiveData, IncentiveDetails, IncentiveFormData } from '../Store.js';
+	import {
+		IncentiveData,
+		IncentiveDetails,
+		IncentiveFormData,
+		mappedIncentives
+	} from '../Store.js';
 	import { page } from '$app/stores';
 	import RejectModal from './RejectModal.svelte';
 	let mapPath = $page.url.pathname;
@@ -22,7 +27,7 @@
 		goto('mapincentive/' + incentiveId);
 	}
 
-	// store variables ===============================================
+	// store variables ====================================
 	let unmappedLength;
 	let isMapped;
 	let incentiveCountData;
@@ -48,13 +53,8 @@
 	// mapIncentive();
 	// }
 
-	// unmappedLength.set((unmappedLength[0].unmapped = unmappedLength.length));
-
 	// subscribe data==========================================================
 	isMapped = $IncentiveDetails;
-	// IncentiveDetails.subscribe((data) => {
-	// 	isMapped = data;
-	// });
 
 	// update initial value of unmapped ==============================================
 	unmappedLength = isMapped.length;
@@ -65,7 +65,6 @@
 		IncentiveDetails.update((data) => {
 			incentiveMap = data;
 			console.log(incentiveMap[incentiveId].isMapped + 'value');
-			// return console.log(incentiveId);
 			incentiveMap[incentiveId].isMapped = true;
 			return [...incentiveMap];
 		});
@@ -87,35 +86,68 @@
 	}
 
 	// reject Incentive function=================================================
-
+	let mappedData;
 	function rejectIncentive() {
-		IncentiveDetails.update((data) => {
-			incentiveMap = data;
-			incentiveMap[incentiveId].isMapped = false;
-			return [...incentiveMap];
-		});
-
-		IncentiveData.update((data) => {
-			incentiveCountData = data;
-
-			if (
-				incentiveCountData[0].mapped.includes(isMapped[incentiveId]) &&
-				!incentiveCountData[0].rejected.includes(isMapped[incentiveId])
-			) {
-				incentiveCountData[0].mapped.splice(isMapped[incentiveId], 1);
-				incentiveCountData[0].rejected.push(isMapped[incentiveId]);
+		mappedIncentives.update((data) => {
+			mappedData = data;
+			// mappedData[incentiveId].isMapped = false;
+			// mappedData[incentiveId].isRejected = true;
+			if (mappedData[incentiveId].isMapped == true && mappedData[incentiveId].isRejected == false) {
+				mappedData.splice(mappedData[incentiveId], 1);
 			} else {
-				alert('not mapped');
+				alert('already rejected');
 			}
-
-			return [...incentiveCountData];
+			console.log(mappedData[incentiveId]);
+			return [...mappedData];
 		});
+	}
+
+	// function rejectIncentive() {
+	// 	IncentiveDetails.update((data) => {
+	// 		incentiveMap = data;
+	// 		incentiveMap[incentiveId].isMapped = false;
+	// 		return [...incentiveMap];
+	// 	});
+
+	// 	IncentiveData.update((data) => {
+	// 		incentiveCountData = data;
+
+	// 		if (
+	// 			incentiveCountData[0].mapped.includes(isMapped[incentiveId]) &&
+	// 			!incentiveCountData[0].rejected.includes(isMapped[incentiveId])
+	// 		) {
+	// 			incentiveCountData[0].mapped.splice(isMapped[incentiveId], 1);
+	// 			incentiveCountData[0].rejected.push(isMapped[incentiveId]);
+	// 		} else {
+	// 			alert('not mapped');
+	// 		}
+
+	// 		return [...incentiveCountData];
+	// 	});
+	// }
+
+	//reject modal functions
+	let showModal = false;
+
+	function openModal() {
+		showModal = true;
+	}
+
+	function closeModal() {
+		showModal = false;
 	}
 </script>
 
+<RejectModal
+	{showModal}
+	onClose={closeModal}
+	{incentiveId}
+	on:rejectIncentiveID={rejectIncentive}
+/>
+
 <div class="container py-3 card-container1">
-	<div class="card container card-style">
-		<div class="container row no-gutters pt-4 px-4">
+	<div class="card container p-4 card-style">
+		<div class="container no-gutters">
 			<div class="border p-0 d-flex">
 				<div class="col-md-8">
 					<img src={incentiveImg} class="card-img mr-3" alt="Product-Image" />
@@ -131,7 +163,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="container content-description mt-4 px-4">
+		<div class="container content-description mt-4">
 			<h5 class="text-truncate">{incentiveInfo}</h5>
 			<p>
 				{discountPrice}
@@ -139,7 +171,7 @@
 			</p>
 			<hr />
 		</div>
-		<div class="container my-3 px-4">
+		<div class="container my-3">
 			<button
 				on:click={() => (contentToggle = !contentToggle)}
 				class="dropdown-toggle content-btn fw-bold"
@@ -191,7 +223,7 @@
 					>
 					<button
 						id={incentiveId}
-						on:click={rejectIncentive}
+						on:click={openModal}
 						class="btn map-incentive-btn p-2 border-danger text-danger"
 						>Reject this Incentive</button
 					>
@@ -205,7 +237,7 @@
 					>
 					<button
 						id={incentiveId}
-						on:click={rejectIncentive}
+						on:click={openModal}
 						class="btn map-incentive-btn p-2 border-danger text-danger"
 						>Reject this Incentive</button
 					>
@@ -261,5 +293,14 @@
 
 	.card-container1 {
 		/* width: 150%; */
+	}
+
+	@media (max-width: 1198px) {
+		.d-flex {
+			flex-wrap: wrap;
+		}
+		.card-style {
+			width: 100%;
+		}
 	}
 </style>

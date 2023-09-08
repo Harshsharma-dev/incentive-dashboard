@@ -7,6 +7,7 @@
 
 	let incentiveId = $page.params.id;
 	console.log(incentiveId);
+
 	// console.log($page.params.id);
 	function backToHome() {
 		goto('/');
@@ -21,13 +22,15 @@
 </script>
 
 <div class="">
-	<div class="mx-4">
+	<div class="mx-5">
 		<div class="d-flex justify-content-between my-4">
-			<div>
-				<button on:click={backToHome} class="btn fw-bold"> ← Back To Incentives List</button>
+			<div class="go-back-btn">
+				<button on:click={backToHome} class="btn">
+					<span><i class="fa fa-solid fa-arrow-left" /> </span>Back To Incentives List</button
+				>
 			</div>
-			<div>
-				<h2 class="mr-7">Map Incentives</h2>
+			<div class="top-row-heading">
+				<h1 class="mr-7">Map Incentives</h1>
 			</div>
 		</div>
 	</div>
@@ -57,5 +60,22 @@
 		.d-flex {
 			flex-wrap: wrap;
 		}
+	}
+
+	.go-back-btn > button {
+		font-size: 24px;
+		font-weight: 600;
+	}
+
+	.top-row-heading > h2 {
+		font-weight: 700;
+		/* font-size: 36px; */
+	}
+	.top-row-heading {
+		margin-right: 26.7rem;
+	}
+
+	.go-back-btn > button:hover {
+		border: 1px solid #000000;
 	}
 </style>

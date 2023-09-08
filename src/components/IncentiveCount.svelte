@@ -43,7 +43,7 @@
 	}
 
 	.dropdown > button {
-		width: 22rem;
+		width: 100%;
 		border: 1px solid #f5f5f5;
 		display: flex;
 		justify-content: space-between;
@@ -51,5 +51,9 @@
 		background: #f5f5f5;
 		border-radius: 2px;
 		border: 1px solid #b2b2b2;
+	}
+
+	.dropdown {
+		width: 30rem;
 	}
 </style>

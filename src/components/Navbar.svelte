@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white px-4">
+<nav class="navbar navbar-expand-lg navbar-light bg-white p-4">
 	<div class="container-fluid mx-2">
-		<a class="navbar-brand" href="/"><h3>Incentive Dashboard</h3></a>
+		<a class="navbar-brand" href="/"><h3 fw-800>Incentive Dashboard</h3></a>
 		<button
 			class="navbar-toggler"
 			type="button"
