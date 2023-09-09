@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white p-4">
+<nav class="navbar navbar-expand-lg navbar-light bg-white p-4 px-3">
 	<div class="container-fluid mx-2">
 		<a class="navbar-brand" href="/"><h3 fw-800>Incentive Dashboard</h3></a>
 		<button

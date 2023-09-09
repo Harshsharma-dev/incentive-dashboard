@@ -52,13 +52,17 @@
 	<div class="container-fluid incentive-details-card-container">
 		<div class="row top-row-card-container justify-content-center mx-4 my-4 mt-3">
 			<UnmappedIncentive
-				unmappedIncentives={unMappedData.length}
+				unmappedIncentives={unMappedData.length.toString().padStart(2, '0')}
 				on:showUnmapped={showUnmapped}
 				{incentiveType}
 			/>
-			<MappedCard mappedIncentives={mappedData.length} on:showMapped={showMapped} {incentiveType} />
+			<MappedCard
+				mappedIncentives={mappedData.length.toString().padStart(2, '0')}
+				on:showMapped={showMapped}
+				{incentiveType}
+			/>
 			<RejectedIncentive
-				rejectedIncentives={rejectedData.length}
+				rejectedIncentives={rejectedData.length.toString().padStart(2, '0')}
 				on:showRejected={showRejected}
 				{incentiveType}
 			/>

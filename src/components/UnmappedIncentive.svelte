@@ -49,20 +49,25 @@
 	<div class="card bg-white rounded card-style" class:selected-card={incentiveType === 'unMapped'}>
 		<button on:click={showUnmapped} class="fw-600 text-start">
 			<div class="card-body">
-				<div class="d-flex justify-content-between">
-					<span class="icon"> icon </span>
-					<div class="update-date d-flex flex-column">
-						<span class="date-text">Last Updated</span>
-						<span class="fw-600 date-span">{dateBuilder()}</span>
+				<div class="d-flex justify-content-between align-items-center">
+					<span class="icon">
+						<i class="fa fa-solid fa-snowflake" style="font-size: 2rem; color:#2971ea;" /></span
+					>
+
+					<div class="update-date d-flex flex-row">
+						<div class="d-flex flex-column" style="font-weight: 600;">
+							<span class="date-text">Last Updated</span>
+							<span class="fw-600 date-span">{dateBuilder()}</span>
+						</div>
+						<span class="icon"><i class="fa fa-solid fa-rotate-right ml-2 mt-1" /></span>
 					</div>
-					<span class="icon"> icon </span>
 				</div>
-				<div class="row">
-					<h3 class="fw-700">{unmappedIncentives}</h3>
+				<div class="row incentive-count">
+					<span>{unmappedIncentives}</span>
 				</div>
 
-				<div class="row">
-					<p>UNMAPPED INCENTIVES</p>
+				<div class="row incentive-title">
+					<span>UNMAPPED INCENTIVES</span>
 				</div>
 			</div>
 		</button>
@@ -85,5 +90,28 @@
 	}
 	.selected-card {
 		border: 2px solid #2971ea;
+	}
+
+	.date-text {
+		font-size: 0.625rem;
+	}
+
+	.date-span {
+		font-size: 0.875rem;
+	}
+
+	.incentive-count > span {
+		font-size: 2.25rem;
+		font-weight: 700;
+	}
+
+	.incentive-title > span {
+		font-size: 1.125rem;
+		font-weight: 600;
+	}
+
+	.icon > i {
+		font-size: 24px;
+		color: #c50000;
 	}
 </style>

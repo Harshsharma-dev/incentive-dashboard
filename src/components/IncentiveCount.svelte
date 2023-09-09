@@ -10,11 +10,13 @@
 	// console.log(incentiveCount.length);
 </script>
 
-<div class="container-fluid mt-3">
-	<div class="d-flex justify-content-between mx-5">
+<div class="container-fluid my-4">
+	<div class="d-flex justify-content-between mx-4">
 		<div class="incentive-count">
 			<span class="font-weight-bold"
-				>TOTAL INCENTIVES <strong class=" ">{$IncentiveDetails.length}</strong></span
+				>TOTAL INCENTIVES <strong class=" "
+					>{$IncentiveDetails.length.toString().padStart(2, '0')}</strong
+				></span
 			>
 		</div>
 
@@ -43,7 +45,7 @@
 	}
 
 	.dropdown > button {
-		width: 100%;
+		width: 95%;
 		border: 1px solid #f5f5f5;
 		display: flex;
 		justify-content: space-between;

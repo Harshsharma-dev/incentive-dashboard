@@ -86,21 +86,21 @@
 	}
 
 	// reject Incentive function=================================================
-	let mappedData;
-	function rejectIncentive() {
-		mappedIncentives.update((data) => {
-			mappedData = data;
-			// mappedData[incentiveId].isMapped = false;
-			// mappedData[incentiveId].isRejected = true;
-			if (mappedData[incentiveId].isMapped == true && mappedData[incentiveId].isRejected == false) {
-				mappedData.splice(mappedData[incentiveId], 1);
-			} else {
-				alert('already rejected');
-			}
-			console.log(mappedData[incentiveId]);
-			return [...mappedData];
-		});
-	}
+	// let mappedData;
+	// function rejectIncentive() {
+	// 	mappedIncentives.update((data) => {
+	// 		mappedData = data;
+	// 		// mappedData[incentiveId].isMapped = false;
+	// 		// mappedData[incentiveId].isRejected = true;
+	// 		if (mappedData[incentiveId].isMapped == true && mappedData[incentiveId].isRejected == false) {
+	// 			mappedData.splice(mappedData[incentiveId], 1);
+	// 		} else {
+	// 			alert('already rejected');
+	// 		}
+	// 		console.log(mappedData[incentiveId]);
+	// 		return [...mappedData];
+	// 	});
+	// }
 
 	// function rejectIncentive() {
 	// 	IncentiveDetails.update((data) => {
@@ -138,12 +138,7 @@
 	}
 </script>
 
-<RejectModal
-	{showModal}
-	onClose={closeModal}
-	{incentiveId}
-	on:rejectIncentiveID={rejectIncentive}
-/>
+<RejectModal {showModal} onClose={closeModal} {incentiveId} />
 
 <div class="container py-3 card-container1">
 	<div class="card container p-4 card-style">
@@ -174,9 +169,18 @@
 		<div class="container my-3">
 			<button
 				on:click={() => (contentToggle = !contentToggle)}
-				class="dropdown-toggle content-btn fw-bold"
+				class="content-btn fw-bold"
 				type="button"
 				>Content
+				{#if !contentToggle}
+					<span>
+						<i class="fa fa-solid fa-chevron-down" />
+					</span>
+				{:else}
+					<span>
+						<i class="fa fa-solid fa-chevron-up" />
+					</span>
+				{/if}
 			</button>
 			{#if contentToggle}
 				<div class="content-description mt-4">
@@ -219,26 +223,30 @@
 					<button
 						id={incentiveId}
 						on:click|preventDefault={mapIncentiveRoute}
-						class="btn map-incentive-btn p-2">Edit Mapping</button
+						class="btn map-incentive-btn px-5 p-2">Edit Mapping</button
 					>
 					<button
 						id={incentiveId}
 						on:click={openModal}
-						class="btn map-incentive-btn p-2 border-danger text-danger"
+						class="btn map-incentive-btn px-5 p-2 border-danger text-danger"
 						>Reject this Incentive</button
 					>
 				{:else if rejectedOrNot}
-					<button id={incentiveId} on:click={mapIncentiveRoute} class="btn map-incentive-btn p-2"
-						>Map This Incentive</button
+					<button
+						id={incentiveId}
+						on:click={mapIncentiveRoute}
+						class="btn map-incentive-btn px-5 p-2">Map This Incentive</button
 					>
 				{:else}
-					<button id={incentiveId} on:click={mapIncentiveRoute} class="btn map-incentive-btn p-2"
-						>Map This Incentive</button
+					<button
+						id={incentiveId}
+						on:click={mapIncentiveRoute}
+						class="btn map-incentive-btn px-5 py-2">Map This Incentive</button
 					>
 					<button
 						id={incentiveId}
 						on:click={openModal}
-						class="btn map-incentive-btn p-2 border-danger text-danger"
+						class="btn map-incentive-btn py-2 px-5 border-danger text-danger"
 						>Reject this Incentive</button
 					>
 				{/if}
@@ -264,7 +272,7 @@
 
 	.map-incentive-btn {
 		border: 0.5px solid grey;
-		width: 30%;
+		/* width: 30%; */
 	}
 
 	.card-title-container {

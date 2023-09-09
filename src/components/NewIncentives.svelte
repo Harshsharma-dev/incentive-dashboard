@@ -31,19 +31,24 @@
 	<div class="card bg-white rounded card-style">
 		<button class="text-start fw-600">
 			<div class="card-body">
-				<div class="d-flex justify-content-between">
-					<span class="icon"> icon </span>
-					<div class="update-date d-flex flex-column">
-						<span class="date-text">Last Updated</span>
-						<span class="fw-600 date-span">{dateBuilder()}</span>
+				<div class="d-flex justify-content-between align-items-center">
+					<span class="icon">
+						<i class="fa fa-solid fa-star" style="font-size: 2rem; color:#253e51;" /></span
+					>
+
+					<div class="update-date d-flex flex-row">
+						<div class="d-flex flex-column" style="font-weight: 600;">
+							<span class="date-text">Last Updated</span>
+							<span class="fw-600 date-span">{dateBuilder()}</span>
+						</div>
+						<span class="icon"><i class="fa fa-solid fa-rotate-right ml-2 mt-1" /></span>
 					</div>
-					<span class="icon"> icon </span>
 				</div>
-				<div class="row">
-					<h3 class="fw-700">0</h3>
+				<div class="row incentive-count">
+					<span>00</span>
 				</div>
-				<div class="row">
-					<p>NEW INCENTIVES</p>
+				<div class="row incentive-title">
+					<span>NEW INCENTIVES</span>
 				</div>
 			</div>
 		</button>
@@ -63,5 +68,29 @@
 		height: 100%;
 		box-shadow: 3px 3px 10px 0px #0000001a;
 		padding: 1.675rem;
+	}
+
+	.date-text {
+		font-size: 0.625rem;
+	}
+
+	.date-span {
+		font-size: 0.875rem;
+	}
+
+	.incentive-count > span {
+		font-size: 2.25rem;
+		font-weight: 700;
+	}
+	.incentive-title > span {
+		font-size: 1.125rem;
+		font-weight: 600;
+	}
+
+	.icon > i {
+		font-size: 24px;
+		color: #c50000;
+		/* margin-left: 0.5rem;
+		margin-top: 0.5rem; */
 	}
 </style>

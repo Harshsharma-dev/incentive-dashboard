@@ -111,7 +111,7 @@
 				</div>
 				<div class="form-group col-md-12 mb-3">
 					<div class="d-flex justify-content-between align-items-center">
-						<div class="col-md-5">
+						<div class="col-md-6" style="margin-right: 0.5rem">
 							<label for="inputDate" class="fw-bold mb-2">Validity/Expiry</label>
 							<input
 								class="form-control py-3 bg-light w-100"
@@ -121,7 +121,7 @@
 								placeholder="MM/DD/YY"
 							/>
 						</div>
-						<div class="col-md-5">
+						<div class="col-md-6">
 							<label for="inputState" class="fw-bold mb-2">Deal Summary Deduction</label>
 							<select id="inputState" class="form-control py-3 bg-light w-100">
 								<option selected>Yes</option>

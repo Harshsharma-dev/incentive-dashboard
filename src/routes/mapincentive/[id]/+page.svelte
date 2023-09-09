@@ -72,7 +72,7 @@
 		/* font-size: 36px; */
 	}
 	.top-row-heading {
-		margin-right: 26.7rem;
+		margin-right: 26.6rem;
 	}
 
 	.go-back-btn > button:hover {

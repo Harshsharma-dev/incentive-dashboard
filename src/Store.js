@@ -1,6 +1,7 @@
 import { writable } from 'svelte/store';
 
 export let IncentiveDetails = writable([
+
     {
         id: 0,
         name: 'BMW MOTORRAD',
@@ -9,7 +10,9 @@ export let IncentiveDetails = writable([
         discription:
             "BEAUTIFUL BIKE, COME CHECK IT OUT IN PERSON. TOURING WITH HOT-ROD STYLING The R 18 Roctane.Appearance: Bagger.Comfort: touring motorcycle.Personality: custom factory hot rod.It is driven by the powerful big boxer engine.Ride it and every country road turns into Route 66. Its style is black and matte – that’s what joy can look like.At least for those who bring #SoulFuel to life.Bagger outline, dragster seat and mini ape- hanger demonstrate that this is not an ordinary bike.Want even more rock 'n' roll ? The bike is ready for customizing.All you need to do is own it!(European model shown.)",
         discountPrice: '$240',
-        isMapped: false
+        isMapped: false,
+        isRejected: false
+
     },
     {
         id: 1,
@@ -21,7 +24,9 @@ export let IncentiveDetails = writable([
             "BEAUTIFUL BIKE, COME CHECK IT OUT IN PERSON. TOURING WITH HOT-ROD STYLING The R 18 Roctane.Appearance: Bagger.Comfort: touring motorcycle.Personality: custom factory hot rod.It is driven by the powerful big boxer engine.Ride it and every country road turns into Route 66. Its style is black and matte – that’s what joy can look like.At least for those who bring #SoulFuel to life.Bagger outline, dragster seat and mini ape- hanger demonstrate that this is not an ordinary bike.Want even more rock 'n' roll ? The bike is ready for customizing.All you need to do is own it!(European model shown.)",
 
         discountPrice: '$210',
-        isMapped: true
+        isMapped: true,
+        isRejected: false
+
     },
     {
         id: 2,
@@ -33,7 +38,9 @@ export let IncentiveDetails = writable([
             "BEAUTIFUL BIKE, COME CHECK IT OUT IN PERSON. TOURING WITH HOT-ROD STYLING The R 18 Roctane.Appearance: Bagger.Comfort: touring motorcycle.Personality: custom factory hot rod.It is driven by the powerful big boxer engine.Ride it and every country road turns into Route 66. Its style is black and matte – that’s what joy can look like.At least for those who bring #SoulFuel to life.Bagger outline, dragster seat and mini ape- hanger demonstrate that this is not an ordinary bike.Want even more rock 'n' roll ? The bike is ready for customizing.All you need to do is own it!(European model shown.)",
 
         discountPrice: '$340',
-        isMapped: true
+        isMapped: true,
+        isRejected: false
+
     },
     {
         id: 3,
@@ -45,7 +52,9 @@ export let IncentiveDetails = writable([
             "BEAUTIFUL BIKE, COME CHECK IT OUT IN PERSON. TOURING WITH HOT-ROD STYLING The R 18 Roctane.Appearance: Bagger.Comfort: touring motorcycle.Personality: custom factory hot rod.It is driven by the powerful big boxer engine.Ride it and every country road turns into Route 66. Its style is black and matte – that’s what joy can look like.At least for those who bring #SoulFuel to life.Bagger outline, dragster seat and mini ape- hanger demonstrate that this is not an ordinary bike.Want even more rock 'n' roll ? The bike is ready for customizing.All you need to do is own it!(European model shown.)",
 
         discountPrice: '$140',
-        isMapped: false
+        isMapped: false,
+        isRejected: false
+
     },
     {
         id: 4,
@@ -57,7 +66,9 @@ export let IncentiveDetails = writable([
             "BEAUTIFUL BIKE, COME CHECK IT OUT IN PERSON. TOURING WITH HOT-ROD STYLING The R 18 Roctane.Appearance: Bagger.Comfort: touring motorcycle.Personality: custom factory hot rod.It is driven by the powerful big boxer engine.Ride it and every country road turns into Route 66. Its style is black and matte – that’s what joy can look like.At least for those who bring #SoulFuel to life.Bagger outline, dragster seat and mini ape- hanger demonstrate that this is not an ordinary bike.Want even more rock 'n' roll ? The bike is ready for customizing.All you need to do is own it!(European model shown.)",
 
         discountPrice: '$540',
-        isMapped: false
+        isMapped: false,
+        isRejected: false
+
     }
 ]);
 
@@ -80,7 +91,7 @@ export let unMappedIncentives = writable([
             "BEAUTIFUL BIKE, COME CHECK IT OUT IN PERSON. TOURING WITH HOT-ROD STYLING The R 18 Roctane.Appearance: Bagger.Comfort: touring motorcycle.Personality: custom factory hot rod.It is driven by the powerful big boxer engine.Ride it and every country road turns into Route 66. Its style is black and matte – that’s what joy can look like.At least for those who bring #SoulFuel to life.Bagger outline, dragster seat and mini ape- hanger demonstrate that this is not an ordinary bike.Want even more rock 'n' roll ? The bike is ready for customizing.All you need to do is own it!(European model shown.)",
         discountPrice: '$240',
         isMapped: false,
-        rejected: false
+        isRejected: false
 
     },
     {
@@ -94,7 +105,8 @@ export let unMappedIncentives = writable([
 
         discountPrice: '$210',
         isMapped: false,
-        rejected: false
+        isRejected: false
+
     }
 ]);
 

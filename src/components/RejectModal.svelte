@@ -2,21 +2,70 @@
 
 <script>
 	export let incentiveId;
-	export let showModal = false;
+	export let showModal;
 	export let onClose;
 	import { createEventDispatcher } from 'svelte';
-	import { mappedIncentives } from '../Store.js';
+	import { mappedIncentives, unMappedIncentives, rejectedIncentives } from '../Store.js';
+	import { goto } from '$app/navigation';
 
 	let mappedData;
 	mappedIncentives.subscribe((data) => {
 		mappedData = data;
 	});
-	const dispatch = createEventDispatcher();
 
-	function rejectIncentive(incentiveId) {
-		dispatch('rejectIncentiveID', incentiveId);
-		console.log(incentiveId);
-	}
+	let rejectedData;
+	rejectedIncentives.subscribe((data) => {
+		rejectedData = data;
+	});
+
+	let unMappedData;
+	unMappedIncentives.subscribe((data) => {
+		unMappedData = data;
+	});
+
+	//update store data
+	let unMappedDataUpdate;
+	let rejectedDataUpdate;
+	let updatedIncentive;
+	let mappedDataUpdate;
+
+	mappedIncentives.update((data) => {
+		mappedDataUpdate = data;
+		return [...mappedDataUpdate];
+	});
+
+	// reject function
+	let rejectId = () => {
+		unMappedIncentives.update((data) => {
+			unMappedDataUpdate = data;
+
+			if (unMappedDataUpdate.includes(unMappedDataUpdate[incentiveId])) {
+				updatedIncentive = unMappedDataUpdate[incentiveId];
+				unMappedData.splice(incentiveId, 1);
+			} else if (mappedDataUpdate.includes(mappedDataUpdate[incentiveId])) {
+				updatedIncentive = mappedIncentives[incentiveId];
+				mappedData.splice(incentiveId, 1);
+			}
+
+			updatedIncentive.isRejected = true;
+			return [...unMappedDataUpdate];
+		});
+
+		rejectedIncentives.update((data) => {
+			rejectedDataUpdate = data;
+			rejectedDataUpdate.push(updatedIncentive);
+			return [...rejectedDataUpdate];
+		});
+		showModal = false;
+		goto('/');
+	};
+
+	// const dispatch = createEventDispatcher();
+
+	// function rejectIncentive(incentiveId) {
+	// 	dispatch('rejectIncentiveID', incentiveId);
+	// 	console.log(incentiveId);
+	// }
 </script>
 
 <!-- 
@@ -36,7 +85,8 @@
 				<div class="border-bottom w-100">
 					<div class="d-flex flex-column justify-content-center">
 						<div class="alert-icon p-5 d-flex align-items-center justify-content-center">
-							<i class="fa fa-heart" />
+							<!-- <i class="fa fa-heart" /> -->
+							<i class="fa fa-solid fa-exclamation" />
 						</div>
 						<div class="head-line">
 							<h5 class="modal-title title-style">
@@ -56,10 +106,11 @@
 							<input
 								type="radio"
 								class="form-check-input custom-control-input"
-								id="radio1"
-								name="customRadio"
+								id="irrelevant"
+								name="rejectReason"
+								value="irrelevant"
 							/>
-							<label class="form-check-label custom-control-label ml-3" for="radio1"
+							<label class="form-check-label custom-control-label ml-3" for="irrelevant"
 								>Irrelevant at this stage</label
 							>
 						</div>
@@ -71,10 +122,11 @@
 								<input
 									type="radio"
 									class="form-check-input custom-control-input"
-									id="radio1"
-									name="customRadio"
+									id="notEnoughtData"
+									name="rejectReason"
+									value="notEnoughtData"
 								/>
-								<label class="form-check-label custom-control-label ml-3" for="radio1"
+								<label class="form-check-label custom-control-label ml-3" for="notEnoughtData"
 									>Not enough data</label
 								>
 							</div>
@@ -86,10 +138,11 @@
 								<input
 									type="radio"
 									class="form-check-input custom-control-input"
-									id="radio1"
-									name="customRadio"
+									id="notForMoto"
+									name="rejectReason"
+									value="notForMoto"
 								/>
-								<label class="form-check-label custom-control-label ml-3" for="radio1"
+								<label class="form-check-label custom-control-label ml-3" for="notForMoto"
 									>Not for motorcycle</label
 								>
 							</div>
@@ -106,7 +159,7 @@
 					<button
 						type="button"
 						id={incentiveId}
-						on:click={() => findIncentiveId(incentiveId)}
+						on:click={rejectId}
 						class="btn map-incentive-btn border-danger text-danger p-3">Yes</button
 					>
 				</div>
@@ -135,8 +188,9 @@
 
 	.modal-content {
 		background-color: #fff;
-		max-width: 80%;
-		max-height: 80%;
+		width: 100%; /* Adjust the width to take up the full viewport width */
+		max-width: 90%;
+		/* max-height: 90vh; */
 		overflow: auto;
 		padding: 20px;
 		box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -163,6 +217,7 @@
 
 	.alert-icon > i {
 		font-size: 5rem;
+		color: #c8511a;
 	}
 
 	.head-line > h5 {
@@ -204,7 +259,7 @@
 	}
 
 	.custom-control-input:checked {
-		border: 2px solid black; /* Black outline when selected */
+		border: 2px solid black;
 	}
 
 	.modal-content {
@@ -212,5 +267,22 @@
 
 		padding: 50px;
 		border-radius: 20px;
+	}
+
+	/* Create custom radio button appearance */
+	input[type='radio']:checked {
+		border: 5px solid #000;
+		background-color: transparent;
+	}
+
+	/* Change the appearance of the custom radio button when checked */
+	input[type='radio']:checked {
+		background-color: transparent;
+	}
+
+	@media (max-width: 1198px) {
+		.modal-content {
+			max-height: 90vh;
+		}
 	}
 </style>
