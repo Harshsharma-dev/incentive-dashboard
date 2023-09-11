@@ -1,7 +1,12 @@
 <script>
 	import IncentiveCard from '../components/IncentiveCard.svelte';
 	import IncentiveCount from '../components/IncentiveCount.svelte';
-	import { unMappedIncentives, mappedIncentives, rejectedIncentives } from '../Store.js';
+	import {
+		unMappedIncentives,
+		mappedIncentives,
+		rejectedIncentives,
+		newIncentives
+	} from '../Store.js';
 	import MappedCard from '../components/MappedCard.svelte';
 	import UnmappedIncentive from '../components/UnmappedIncentive.svelte';
 	import RejectedIncentive from '../components/RejectedIncentive.svelte';
@@ -26,6 +31,12 @@
 		console.log(rejectedData.length);
 	});
 
+	let newData;
+	newIncentives.subscribe((data) => {
+		newData = data;
+		console.log(newData.length);
+	});
+
 	let incentiveType = 'unMapped';
 	function toggleIncentives(type) {
 		incentiveType = type;
@@ -43,6 +54,11 @@
 	function showRejected(event) {
 		toggleIncentives('rejected');
 		console.log('rejected');
+	}
+
+	function showNew(event) {
+		toggleIncentives('new');
+		console.log('new');
 	}
 </script>
 
@@ -66,7 +82,11 @@
 				on:showRejected={showRejected}
 				{incentiveType}
 			/>
-			<NewIncentives />
+			<NewIncentives
+				newIncentives={newData.length.toString().padStart(2, '0')}
+				on:showNew={showNew}
+				{incentiveType}
+			/>
 		</div>
 	</div>
 
@@ -115,6 +135,18 @@
 		{/each}
 	{:else if incentiveType === 'rejected'}
 		{#each rejectedData as incentive, index}
+			<IncentiveCard
+				incentiveImg={incentive.src}
+				incentiveName={incentive.name}
+				incentiveInfo={incentive.title}
+				incentiveId={incentive.id}
+				incentiveDesc={incentive.discription}
+				discountPrice={incentive.discountPrice}
+				rejectedOrNot={incentive.isRejected}
+			/>
+		{/each}
+	{:else if incentiveType === 'new'}
+		{#each newData as incentive, index}
 			<IncentiveCard
 				incentiveImg={incentive.src}
 				incentiveName={incentive.name}

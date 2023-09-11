@@ -42,7 +42,7 @@
 			<div class="card-body">
 				<div class="d-flex justify-content-between align-items-center">
 					<span class="icon">
-						<i class="fa fa-solid fa-exclamation" style="font-size: 2rem;" /></span
+						<i class="fa fa-solid fa-exclamation-fa" style="font-size: 2rem;" /></span
 					>
 
 					<div class="update-date d-flex flex-row">

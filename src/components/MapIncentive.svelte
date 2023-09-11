@@ -14,36 +14,6 @@
 	//form variables
 	export let incentiveTitle;
 
-	// let addModelDiv;
-	// function addModel() {
-	// 	const rowTemplate = `<div class="d-flex flex-wrap justify-content-between">
-	// 					<div class="col-md-2">
-	// 						<select id="inputState" class="form-control p-3 bg-light">
-	// 							<option selected>Year</option>
-	// 							<option>No</option>
-	// 						</select>
-	// 					</div>
-	// 					<div class="col-md-4">
-	// 						<select id="inputState" class="form-control p-3 bg-light">
-	// 							<option selected>Model</option>
-	// 							<option>No</option>
-	// 						</select>
-	// 					</div>
-	// 					<div class="col-md-4">
-	// 						<select id="inputState" class="form-control p-3 bg-light">
-	// 							<option selected>400 GT</option>
-	// 							<option>No</option>
-	// 						</select>
-	// 					</div>
-	// 					<div class="remove-btn">
-	// 						<button class="btn bg-danger text-white rounded-circle"><span>X</span></button>
-	// 					</div>
-	// 				</div>`;
-	// 	addModelDiv.innerHTML = 'rowTemplate';
-
-	// 	console.log('hell');
-	// }
-
 	// update with form submit===================================================
 	let updateIncentive = () => {
 		console.log('submit');

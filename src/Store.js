@@ -69,6 +69,19 @@ export let IncentiveDetails = writable([
         isMapped: false,
         isRejected: false
 
+    },
+    {
+        id: 5,
+
+        name: 'R 18 Roctane',
+        src: 'https://cdn1.cycletrader.com/v1/media/64d6b902648dc01b5a236257.jpg?width=1024&height=768&quality=70&bestfit=true&upsize=true&blurBackground=true&blurValue=100&upsize=true',
+        title: 'Irv Seaver Motorcycles',
+        discription:
+            "BEAUTIFUL BIKE, COME CHECK IT OUT IN PERSON. TOURING WITH HOT-ROD STYLING The R 18 Roctane.Appearance: Bagger.Comfort: touring motorcycle.Personality: custom factory hot rod.It is driven by the powerful big boxer engine.Ride it and every country road turns into Route 66. Its style is black and matte – that’s what joy can look like.At least for those who bring #SoulFuel to life.Bagger outline, dragster seat and mini ape- hanger demonstrate that this is not an ordinary bike.Want even more rock 'n' roll ? The bike is ready for customizing.All you need to do is own it!(European model shown.)",
+
+        discountPrice: '$540',
+        isMapped: false,
+        isRejected: true
     }
 ]);
 
@@ -107,23 +120,11 @@ export let unMappedIncentives = writable([
         isMapped: false,
         isRejected: false
 
-    }
+    },
 ]);
 
 export let mappedIncentives = writable([
-    {
-        id: 2,
 
-        name: 'RS 660 EXTREMA',
-        src: 'https://cdn1.cycletrader.com/v1/media/64e642cb8509a874e964fb37.jpg?width=1024&height=768&quality=70&bestfit=true&upsize=true&blurBackground=true&blurValue=100&upsize=true',
-        title: 'MOTOPLEX DAYTONA',
-        discription:
-            "BEAUTIFUL BIKE, COME CHECK IT OUT IN PERSON. TOURING WITH HOT-ROD STYLING The R 18 Roctane.Appearance: Bagger.Comfort: touring motorcycle.Personality: custom factory hot rod.It is driven by the powerful big boxer engine.Ride it and every country road turns into Route 66. Its style is black and matte – that’s what joy can look like.At least for those who bring #SoulFuel to life.Bagger outline, dragster seat and mini ape- hanger demonstrate that this is not an ordinary bike.Want even more rock 'n' roll ? The bike is ready for customizing.All you need to do is own it!(European model shown.)",
-
-        discountPrice: '$340',
-        isMapped: true,
-        isRejected: false
-    },
     {
         id: 3,
 
@@ -143,6 +144,22 @@ export let mappedIncentives = writable([
 export let rejectedIncentives = writable([
     {
         id: 4,
+
+        name: 'R 18 Roctane',
+        src: 'https://cdn1.cycletrader.com/v1/media/64d6b902648dc01b5a236257.jpg?width=1024&height=768&quality=70&bestfit=true&upsize=true&blurBackground=true&blurValue=100&upsize=true',
+        title: 'Irv Seaver Motorcycles',
+        discription:
+            "BEAUTIFUL BIKE, COME CHECK IT OUT IN PERSON. TOURING WITH HOT-ROD STYLING The R 18 Roctane.Appearance: Bagger.Comfort: touring motorcycle.Personality: custom factory hot rod.It is driven by the powerful big boxer engine.Ride it and every country road turns into Route 66. Its style is black and matte – that’s what joy can look like.At least for those who bring #SoulFuel to life.Bagger outline, dragster seat and mini ape- hanger demonstrate that this is not an ordinary bike.Want even more rock 'n' roll ? The bike is ready for customizing.All you need to do is own it!(European model shown.)",
+
+        discountPrice: '$540',
+        isMapped: false,
+        isRejected: true
+    }
+]);
+
+export let newIncentives = writable([
+    {
+        id: 5,
 
         name: 'R 18 Roctane',
         src: 'https://cdn1.cycletrader.com/v1/media/64d6b902648dc01b5a236257.jpg?width=1024&height=768&quality=70&bestfit=true&upsize=true&blurBackground=true&blurValue=100&upsize=true',

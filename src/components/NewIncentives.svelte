@@ -1,5 +1,6 @@
 <script>
 	export let newIncentives;
+	export let incentiveType;
 
 	function dateBuilder() {
 		let d = new Date();
@@ -25,15 +26,23 @@
 
 		return `${month} ${date},  ${year}`;
 	}
+
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
+
+	function showNew() {
+		dispatch('showNew');
+	}
 </script>
 
 <div class="col-sm-3 card-container-style">
-	<div class="card bg-white rounded card-style">
-		<button class="text-start fw-600">
+	<div class="card bg-white rounded card-style" class:selected-card={incentiveType === 'new'}>
+		<button on:click={showNew} class="text-start fw-600">
 			<div class="card-body">
 				<div class="d-flex justify-content-between align-items-center">
 					<span class="icon">
-						<i class="fa fa-solid fa-star" style="font-size: 2rem; color:#253e51;" /></span
+						<i class="fa fa-solid fa-star-fas" style="font-size: 2rem; color:#253e51;" /></span
 					>
 
 					<div class="update-date d-flex flex-row">
@@ -45,7 +54,7 @@
 					</div>
 				</div>
 				<div class="row incentive-count">
-					<span>00</span>
+					<span>{newIncentives}</span>
 				</div>
 				<div class="row incentive-title">
 					<span>NEW INCENTIVES</span>
@@ -85,6 +94,10 @@
 	.incentive-title > span {
 		font-size: 1.125rem;
 		font-weight: 600;
+	}
+
+	.selected-card {
+		border: 2px solid #253e51;
 	}
 
 	.icon > i {

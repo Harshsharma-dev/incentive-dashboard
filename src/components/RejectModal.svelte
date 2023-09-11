@@ -1,5 +1,3 @@
-<!-- FullScreenModal.svelte -->
-
 <script>
 	export let incentiveId;
 	export let showModal;
@@ -35,37 +33,40 @@
 	});
 
 	// reject function
+
+	//radio butns validation
+	let rejectReason;
+
+	function rejectValidation(event) {
+		rejectReason = event.currentTarget.value;
+		console.log(rejectReason);
+	}
+
 	let rejectId = () => {
-		unMappedIncentives.update((data) => {
-			unMappedDataUpdate = data;
+		// checkFilled();
+		if (rejectReason) {
+			unMappedIncentives.update((data) => {
+				unMappedDataUpdate = data;
 
-			if (unMappedDataUpdate.includes(unMappedDataUpdate[incentiveId])) {
 				updatedIncentive = unMappedDataUpdate[incentiveId];
-				unMappedData.splice(incentiveId, 1);
-			} else if (mappedDataUpdate.includes(mappedDataUpdate[incentiveId])) {
-				updatedIncentive = mappedIncentives[incentiveId];
-				mappedData.splice(incentiveId, 1);
-			}
+				unMappedDataUpdate.splice(incentiveId, 1);
+				unMappedDataUpdate.includes(unMappedDataUpdate[incentiveId]);
 
-			updatedIncentive.isRejected = true;
-			return [...unMappedDataUpdate];
-		});
+				updatedIncentive.isRejected = true;
+				return [...unMappedDataUpdate];
+			});
 
-		rejectedIncentives.update((data) => {
-			rejectedDataUpdate = data;
-			rejectedDataUpdate.push(updatedIncentive);
-			return [...rejectedDataUpdate];
-		});
-		showModal = false;
-		goto('/');
+			rejectedIncentives.update((data) => {
+				rejectedDataUpdate = data;
+				rejectedDataUpdate.push(updatedIncentive);
+				return [...rejectedDataUpdate];
+			});
+			showModal = false;
+			goto('/');
+		} else {
+			alert('Please select a Reject Reason');
+		}
 	};
-
-	// const dispatch = createEventDispatcher();
-
-	// function rejectIncentive(incentiveId) {
-	// 	dispatch('rejectIncentiveID', incentiveId);
-	// 	console.log(incentiveId);
-	// }
 </script>
 
 <!-- 
@@ -109,6 +110,8 @@
 								id="irrelevant"
 								name="rejectReason"
 								value="irrelevant"
+								checked={rejectReason === 'irrelevant'}
+								on:change={rejectValidation}
 							/>
 							<label class="form-check-label custom-control-label ml-3" for="irrelevant"
 								>Irrelevant at this stage</label
@@ -125,6 +128,8 @@
 									id="notEnoughtData"
 									name="rejectReason"
 									value="notEnoughtData"
+									checked={rejectReason === 'notEnoughtData'}
+									on:change={rejectValidation}
 								/>
 								<label class="form-check-label custom-control-label ml-3" for="notEnoughtData"
 									>Not enough data</label
@@ -141,6 +146,8 @@
 									id="notForMoto"
 									name="rejectReason"
 									value="notForMoto"
+									checked={rejectReason === 'notForMoto'}
+									on:change={rejectValidation}
 								/>
 								<label class="form-check-label custom-control-label ml-3" for="notForMoto"
 									>Not for motorcycle</label
@@ -196,7 +203,7 @@
 		box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 		border-radius: 8px;
 	}
-
+	/* 
 	.close-button {
 		position: absolute;
 		top: 10px;
@@ -204,7 +211,7 @@
 		background: none;
 		border: none;
 		cursor: pointer;
-	}
+	} */
 
 	.title-style {
 		/* font-family: Open Sans; */

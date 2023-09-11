@@ -42,7 +42,7 @@
 			<div class="card-body">
 				<div class="d-flex justify-content-between align-items-center">
 					<span class="icon">
-						<i class="fa fa-solid fa-heart" style="font-size: 2rem; color:#468200;" /></span
+						<i class="fa fa-solid fa-heart-da" style="font-size: 2rem; color:#468200;" /></span
 					>
 					<div class="update-date d-flex flex-row">
 						<div class="d-flex flex-column" style="font-weight: 600;">
